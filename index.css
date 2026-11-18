@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f7f5f0;
+  --color-beige: #e9e2d5;
+  --color-charcoal: #242424;
+  --color-sage: #87917d;
+  --color-sage-deep: #5c6553;
+  --color-gold: #b69a65;
+  --color-gold-deep: #7d6639;
+  --color-white: #ffffff;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-charcoal antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-gold text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .container-luxe {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold tracking-[0.28em] text-gold-deep uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-gold;
+  }
+
+  .field {
+    @apply w-full rounded-sm border border-charcoal/15 bg-white px-4 py-3.5 text-[0.95rem] text-charcoal transition-colors duration-300 placeholder:text-charcoal/40 focus:border-gold focus:outline-none;
+  }
+
+  .field[aria-invalid="true"] {
+    @apply border-red-700/70;
+  }
+}
